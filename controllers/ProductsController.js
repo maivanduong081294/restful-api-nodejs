@@ -32,6 +32,7 @@ module.exports = {
     },
     store: (req, res) => {
         let data = req.body;
+        data.id = null
         let sql = 'INSERT INTO products SET ?'
         db.query(sql, [data], (err, response) => {
             if (err) throw err
