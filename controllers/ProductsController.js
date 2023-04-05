@@ -22,7 +22,6 @@ module.exports = {
     },
     update: (req, res) => {
         let data = req.body;
-        console.log(data);
         let productId = req.params.productId;
         let sql = "UPDATE products SET ? WHERE id = ?";
         db.query(sql, [data, productId], (err, response) => {
