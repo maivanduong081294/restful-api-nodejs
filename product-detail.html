@@ -1,0 +1,18 @@
+<form method="PUT">
+  <input type="text" name="id" value="1" />
+  <button type="submit">Submit</button>
+</form>
+<script>
+  document.querySelector("button").onclick = function (e) {
+    e.preventDefault();
+    console.log("ok");
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "Surface Pro", color: "white",price: 50000000 }),
+    };
+    fetch("http://localhost:3000/products/1", requestOptions)
+      .then((response) => response.json())
+      .then((data) => (element.innerHTML = data.updatedAt));
+  };
+</script>
