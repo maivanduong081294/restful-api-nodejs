@@ -1,47 +1,47 @@
 <form method="PUT">
-  <input type="text" id="id" name="id" value="1" />
-  <div>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" value="" />
-  </div>
-  <div>
-    <label for="color">Color</label>
-    <input type="text" id="color" name="color" value="" />
-  </div>
-  <div>
-    <label for="price">Price</label>
-    <input
-      type="number"
-      id="price"
-      step="1000"
-      min="0"
-      name="price"
-      value=""
-    />
-  </div>
-  <button type="submit">Submit</button>
-  <div id="message"></div>
+    <input type="text" id="id" name="id" value="1" />
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="" />
+    </div>
+    <div>
+        <label for="color">Color</label>
+        <input type="text" id="color" name="color" value="" />
+    </div>
+    <div>
+        <label for="price">Price</label>
+        <input
+            type="number"
+            id="price"
+            step="1000"
+            min="0"
+            name="price"
+            value=""
+        />
+    </div>
+    <button type="submit">Submit</button>
+    <div id="message"></div>
 </form>
 <script>
-  document.querySelector("button").onclick = function (e) {
-    e.preventDefault();
-    id = document.querySelector('#id').value;
-    name = document.querySelector('#name').value;
-    color = document.querySelector('#color').value;
-    price = document.querySelector('#price').value;
-    message = document.querySelector('#message').value;
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: id,
-        name: name,
-        color: color,
-        price: price,
-      }),
+    document.querySelector("button").onclick = function (e) {
+        e.preventDefault();
+        id = document.querySelector("#id").value;
+        name = document.querySelector("#name").value;
+        color = document.querySelector("#color").value;
+        price = document.querySelector("#price").value;
+        message = document.querySelector("#message").value;
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id: id,
+                name: name,
+                color: color,
+                price: price,
+            }),
+        };
+        fetch("http://localhost:3000/products", requestOptions)
+            .then((response) => response.json())
+            .then((data) => (message.innerHTML = data.updatedAt));
     };
-    fetch("http://localhost:3000/products", requestOptions)
-      .then((response) => response.json())
-      .then((data) => (message.innerHTML = data.updatedAt));
-  };
 </script>
