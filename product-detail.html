@@ -1,8 +1,8 @@
 <form method="PUT">
     <input type="text" id="id" name="id" value="1" />
     <div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" value="" />
+        <label for="domain">Name</label>
+        <input type="text" id="domain" name="domain" value="" />
     </div>
     <div>
         <label for="color">Color</label>
@@ -25,23 +25,21 @@
 <script>
     document.querySelector("button").onclick = function (e) {
         e.preventDefault();
+        const token = "4a639294f707456cddbabf28cf29c990";
         id = document.querySelector("#id").value;
-        name = document.querySelector("#name").value;
+        domain = document.querySelector("#domain").value;
         color = document.querySelector("#color").value;
         price = document.querySelector("#price").value;
         message = document.querySelector("#message").value;
         const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                id: id,
-                name: name,
-                color: color,
-                price: price,
-            }),
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+            },
         };
-        fetch("http://localhost:3000/products", requestOptions)
+        fetch("http://localhost:3500/products", requestOptions)
             .then((response) => response.json())
-            .then((data) => (message.innerHTML = data.updatedAt));
+            .then((data) => console.log(data));
     };
 </script>

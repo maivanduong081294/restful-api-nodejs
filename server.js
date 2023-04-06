@@ -4,8 +4,20 @@ const bodyParser = require("body-parser");
 require("dotenv").config({ path: "./.env" });
 const port = process.env.PORT || 3000;
 
+global.appRoot = __dirname;
+
+const cors = require("cors");
+app.use(
+    cors({
+        origin: "*",
+        methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+    })
+);
+const auth = require("./middleware/auth");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(auth);
 
 let routes = require("./routes"); //importing route
 routes(app);
